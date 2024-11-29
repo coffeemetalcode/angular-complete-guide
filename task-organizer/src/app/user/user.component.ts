@@ -1,5 +1,17 @@
 import { Component, computed, EventEmitter, Input, input, Output, output } from '@angular/core';
 
+/* type User = {
+  id: string;
+  avatar: string;
+  name: string;
+}; */
+
+interface User {
+  id: string;
+  avatar: string;
+  name: string;
+};
+
 @Component({
   selector: 'app-user',
   standalone: true,
@@ -9,9 +21,7 @@ import { Component, computed, EventEmitter, Input, input, Output, output } from 
 })
 export class UserComponent {
   /* Traditional Angular Inputs */
-  @Input({ required: true }) id!: string;
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string;
+  @Input({ required: true}) user!: User;
 
   /* Signals inputs */
   // avatar = input.required<string>();
@@ -25,7 +35,7 @@ export class UserComponent {
 
   /* For use with Input */
   get imagePath() {
-    return 'assets/users/' + this.avatar;
+    return 'assets/users/' + this.user.avatar;
   }
 
   /* For use with Signals */
@@ -34,7 +44,7 @@ export class UserComponent {
   }); */
 
   onSelectUser() {
-    console.log(this.id);
-    this.select.emit(this.id);
+    console.log(this.user.id);
+    this.select.emit(this.user.id);
   }
 }

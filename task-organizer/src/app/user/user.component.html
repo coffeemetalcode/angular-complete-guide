@@ -1,9 +1,9 @@
 <div>
   <button (click)="onSelectUser()">
     <!-- Use Angular Input()s -->
-    <img [src]="imagePath" [alt]="name"
+    <img [src]="imagePath" [alt]="user.name"
     />
-    <span>{{ name }}</span>
+    <span>{{ user.name }}</span>
 
     <!-- Use Signals -->
     <!-- <img [src]="imagePath()" [alt]="name()"
