@@ -1,0 +1,34 @@
+import { Component, inject, Input } from '@angular/core';
+
+import { TasksService } from './tasks.service';
+import { TaskComponent } from './task/task.component';
+import { NewTaskComponent } from './new-task/new-task.component';
+import { NewTaskData } from './task/task.model';
+
+@Component({
+  selector: 'app-tasks',
+  standalone: true,
+  imports: [TaskComponent, NewTaskComponent],
+  templateUrl: './tasks.component.html',
+  styleUrl: './tasks.component.css'
+})
+export class TasksComponent {
+  constructor(private _tasksService: TasksService) {}
+  // private _tasksService = inject(TasksService);
+  @Input({required: true}) userId!: string;
+  @Input({required: true}) name!: string;
+
+  isAddingTask = false;
+
+  get selectedUserTasks() {
+    return this._tasksService.getUserTasks(this.userId);
+  }
+
+  onStartAddTask() {
+    this.isAddingTask = true;
+  }
+
+  onCancelAddTask() {
+    this.isAddingTask = false;
+  }
+}
