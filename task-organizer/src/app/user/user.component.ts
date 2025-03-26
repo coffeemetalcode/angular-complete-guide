@@ -1,16 +1,7 @@
 import { Component, computed, EventEmitter, Input, input, Output, output } from '@angular/core';
 
-/* type User = {
-  id: string;
-  avatar: string;
-  name: string;
-}; */
+import { User } from './user.model';
 
-interface User {
-  id: string;
-  avatar: string;
-  name: string;
-};
 
 @Component({
   selector: 'app-user',
@@ -22,6 +13,7 @@ interface User {
 export class UserComponent {
   /* Traditional Angular Inputs */
   @Input({ required: true}) user!: User;
+  @Input({ required: true }) selected!: boolean;
 
   /* Signals inputs */
   // avatar = input.required<string>();
@@ -44,7 +36,7 @@ export class UserComponent {
   }); */
 
   onSelectUser() {
-    console.log(this.user.id);
+    // console.log(this.user.id);
     this.select.emit(this.user.id);
   }
 }
